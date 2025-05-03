@@ -13,7 +13,8 @@ import AddUsersModal from "../modals/AddUsersModal";
 
 //CARGA DE DATOS
 import UsersStaticData from '../../../../db/security/json/users/UsersData';
-import { getAllUsers } from "../../services/remote/get/GetAllUsers";
+
+//import { getAllUsers } from "../../services/remote/get/GetAllUsers";
 
 //FIC: Columns Table Definition.
 const UsersColumns = [
