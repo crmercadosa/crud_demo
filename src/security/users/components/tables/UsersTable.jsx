@@ -74,8 +74,8 @@ const UsersColumns = [
     useEffect(() => {
       async function fetchData() {
         try {  
-          const AllUsers = await getAllUsers(); 
-          setUsersData(AllUsers); //Colocar aquí "UsersStaticData" en lugar de "AllUsers" para usar la data estática
+          //const AllUsers = await getAllUsers(); 
+          setUsersData(UsersStaticData); //Colocar aquí "UsersStaticData" en lugar de "AllUsers" para usar la data estática
           setLoadingTable(false);
         } catch (error) {
           console.error("Error al obtener productos:", error);
