@@ -18,6 +18,8 @@ const AddUsersModal = ({AddUsersShowModal, setAddUsersShowModal}) => {
     const [mensajeErrorAlert, setMensajeErrorAlert] = useState("");
     const [mensajeExitoAlert, setMensajeExitoAlert] = useState("");
 
+    const [Loading, setLoading] = useState(false);
+
     //FIC: Definition Formik y Yup.
     const formik = useFormik({
         initialValues: {
@@ -54,6 +56,8 @@ const AddUsersModal = ({AddUsersShowModal, setAddUsersShowModal}) => {
                 setMensajeErrorAlert(null);
                 setMensajeErrorAlert("No se pudo crear el usuario");
             }
+
+            setLoading(false);
         },
     });
 
@@ -187,6 +191,7 @@ const AddUsersModal = ({AddUsersShowModal, setAddUsersShowModal}) => {
                         variant="contained"
                         type="submit"
                         disabled={!!mensajeExitoAlert}
+                        loading={Loading}
                         //onClick={() => setAddUserseShowModal(false)}
                     >
                         <span>GUARDAR</span>
