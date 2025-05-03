@@ -2,11 +2,15 @@
 import React, { useEffect, useState } from "react";
 //FIC: Material UI
 import { MaterialReactTable } from 'material-react-table';
-import { Box, Stack, Tooltip, IconButton } from "@mui/material";
+import { Box, Stack, Tooltip, IconButton, Dialog } from "@mui/material";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import EditIcon from "@mui/icons-material/Edit";
 import InfoIcon from "@mui/icons-material/Info";
 import DeleteIcon from "@mui/icons-material/Delete";
+
+//Modal
+import AddUsersModal from "../modals/AddUsersModal";
+
 //CARGA DE DATOS
 import UsersStaticData from '../../../../db/security/json/users/UsersData';
 import { getAllUsers } from "../../services/remote/get/GetAllUsers";
@@ -63,6 +67,10 @@ const UsersColumns = [
     
     //FIC: controlar el estado de la data de Institutos.
     const [UsersData, setUsersData] = useState([]);
+
+    //Controlar el estado para la ventana modal
+    const [AddUserShowModal, setAddUserShowModal] = useState(false);
+
     useEffect(() => {
       async function fetchData() {
         try {  
@@ -91,7 +99,9 @@ const UsersColumns = [
                     <Stack direction="row" sx={{ m: 1 }}>
                       <Box>
                         <Tooltip title="Agregar">
-                          <IconButton >
+                          <IconButton 
+                            onClick={()=>setAddUserShowModal(true)}
+                          >
                             <AddCircleIcon />
                           </IconButton>
                         </Tooltip>
@@ -117,6 +127,13 @@ const UsersColumns = [
                 )}
             />
           </Box>
+          {/*MODALES*/}
+          <Dialog open={AddUserShowModal}>
+            <AddUsersModal
+              AddUsersShowModal={AddUserShowModal}
+              setAddUsersShowModal={setAddUserShowModal}
+            />
+          </Dialog>
         </Box>
       );
   };
